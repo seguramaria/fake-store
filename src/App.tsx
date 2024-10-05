@@ -5,6 +5,7 @@ import Header from './components/Header';
 import { CssBaseline } from '@mui/material';
 import ProductDetail from './components/ProductDetail';
 import { useCart } from './hooks/useCart';
+import { useFecthData } from './hooks/useFecthData';
 
 function App() {
   const {
@@ -16,11 +17,10 @@ function App() {
     decreaseQuantity,
     getProductQuantity,
     increaseQuantity,
-    isLoading,
-    products,
+
     removeProductFromCart,
   } = useCart();
-
+  const { isLoading, products } = useFecthData();
   return (
     <Router>
       <CssBaseline />
