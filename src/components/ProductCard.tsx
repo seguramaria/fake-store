@@ -6,12 +6,11 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardActions from '@mui/material/CardActions';
-import ProductDetail from './ProductDetail';
+import { Link } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import { Product } from '../types';
-import { useState } from 'react';
 
 type Props = {
   addToCart: (product: Product) => void;
@@ -28,21 +27,12 @@ const ProductCard = ({
   quantity,
   decreaseQuantity,
 }: Props) => {
-  const [open, setOpen] = useState(false);
   const { image, title, price } = product;
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   return (
-    <>
+    <Link to={`/product/${product.id}`} style={{ textDecoration: 'none' }}>
       <Card sx={{ maxWidth: 345 }}>
-        <CardActionArea onClick={handleClickOpen}>
+        <CardActionArea>
           <CardMedia
             component='img'
             height='350'
@@ -87,16 +77,7 @@ const ProductCard = ({
           )}
         </CardActions>
       </Card>
-      <ProductDetail
-        addToCart={addToCart}
-        handleClose={handleClose}
-        increaseQuantity={increaseQuantity}
-        open={open}
-        product={product}
-        quantity={quantity}
-        decreaseQuantity={decreaseQuantity}
-      />
-    </>
+    </Link>
   );
 };
 

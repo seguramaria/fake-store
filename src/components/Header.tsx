@@ -10,16 +10,16 @@ import {
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ShoppingCart from './ShoppingCart';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { Icon } from '@mui/material';
+import StoreOutlinedIcon from '@mui/icons-material/StoreOutlined';
 import { Product } from '../types';
 
 type Props = {
   cart: Product[];
   clearCart: () => void;
   decreaseQuantity: (id: number) => void;
-  icon: string;
+
   increaseQuantity: (id: number) => void;
-  name: string;
+
   removeProductFromCart: (id: number) => void;
 };
 
@@ -27,9 +27,9 @@ const Header = ({
   cart,
   clearCart,
   decreaseQuantity,
-  icon,
+
   increaseQuantity,
-  name,
+
   removeProductFromCart,
 }: Props) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -48,18 +48,14 @@ const Header = ({
           href='/'
           sx={{ width: '100%', justifyContent: 'flex-start' }}
         >
-          {icon && (
-            <Icon
-              className='material-icons-outlined'
-              color='inherit'
-              sx={{ marginRight: '0.5rem' }}
-            >
-              {icon}
-            </Icon>
-          )}
-          {/* <Typography component='div' variant={isDesktop ? 'h5' : 'body1'}>
-            {name}
-          </Typography> */}
+          <StoreOutlinedIcon
+            className='material-icons-outlined'
+            color='inherit'
+            sx={{ marginRight: '0.5rem' }}
+          />
+          <Typography component='div' variant={isDesktop ? 'h5' : 'body1'}>
+            Fake Store
+          </Typography>
         </Button>
 
         <Box

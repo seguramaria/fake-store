@@ -1,13 +1,8 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { Icon } from '@mui/material';
+import StoreOutlinedIcon from '@mui/icons-material/StoreOutlined';
 
-type Props = {
-  icon: string;
-  name: string;
-};
-
-const Footer = ({ icon, name }: Props) => {
+const Footer = () => {
   return (
     <Box
       component='footer'
@@ -24,18 +19,15 @@ const Footer = ({ icon, name }: Props) => {
         width: '100%',
       }}
     >
-      {/* <Typography variant='body2'>
-        © {new Date().getFullYear()} {name}
-      </Typography> */}
-      {icon && (
-        <Icon
-          className='material-icons-outlined'
-          color='inherit'
-          sx={{ marginLeft: '0.5rem' }}
-        >
-          {icon}
-        </Icon>
-      )}
+      <Typography variant='body2'>
+        © {new Date().getFullYear()} Fake Store
+      </Typography>
+
+      <StoreOutlinedIcon
+        className='material-icons-outlined'
+        color='inherit'
+        sx={{ marginLeft: '0.5rem' }}
+      />
     </Box>
   );
 };
