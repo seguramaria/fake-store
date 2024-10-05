@@ -3,8 +3,8 @@ import IconButton from '@mui/material/IconButton';
 import ShoppingCartItem from './ShoppingCartItem';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import { Button, Stack, Typography } from '@mui/material';
-import { useMemo } from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { useCart } from '../hooks/useCart';
 import { Product } from '../types';
 
 type Props = {
@@ -24,15 +24,7 @@ const ShoppingCart = ({
   increaseQuantity,
   removeProductFromCart,
 }: Props) => {
-  const isEmpty = useMemo(() => cart.length === 0, [cart]);
-  const cartTotal = useMemo(
-    () =>
-      cart.reduce(
-        (total, product) => total + (product.quantity || 0) * product.price,
-        0
-      ),
-    [cart]
-  );
+  const { cartIsEmpty, cartTotal } = useCart();
   const isDesktop = useMediaQuery('(min-width:600px)');
 
   return (
@@ -61,7 +53,7 @@ const ShoppingCart = ({
             <CloseIcon />
           </IconButton>
         )}
-        {isEmpty ? (
+        {cartIsEmpty ? (
           <Stack
             sx={{
               alignItems: 'flex-start',
@@ -129,7 +121,7 @@ const ShoppingCart = ({
             sx={{ margin: '0 0 0.3rem 0.5rem' }}
           />
         </Stack>
-        {!isEmpty && (
+        {!cartIsEmpty && (
           <Button
             variant='outlined'
             color='inherit'
