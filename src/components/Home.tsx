@@ -32,9 +32,9 @@ function Home({
         backgroundPosition: 'center',
       }}
     >
-      <Box sx={{ width: '14rem', mb: 2 }}>
-        <CardMedia component='img' src='./img/logo.svg' alt='logo' />
-      </Box>
+      {/* <Box sx={{ width: '14rem', mb: 2 }}>
+        <CardMedia component='img' src='./img/logo.svg' alt='logo' /> TODO: Add image
+      </Box> */}
       <Grid
         container
         alignItems='center'

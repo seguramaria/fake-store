@@ -10,6 +10,8 @@ function App() {
   const {
     addToCart,
     cart,
+    cartIsEmpty,
+    cartTotal,
     clearCart,
     decreaseQuantity,
     getProductQuantity,
@@ -24,6 +26,8 @@ function App() {
       <CssBaseline />
       <Header
         cart={cart}
+        cartIsEmpty={cartIsEmpty}
+        cartTotal={cartTotal}
         clearCart={clearCart}
         decreaseQuantity={decreaseQuantity}
         increaseQuantity={increaseQuantity}

@@ -4,11 +4,12 @@ import ShoppingCartItem from './ShoppingCartItem';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import { Button, Stack, Typography } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useCart } from '../hooks/useCart';
 import { Product } from '../types';
 
 type Props = {
   cart: Product[];
+  cartIsEmpty: boolean;
+  cartTotal: number;
   clearCart: () => void;
   close: () => void;
   decreaseQuantity: (id: number) => void;
@@ -18,13 +19,14 @@ type Props = {
 
 const ShoppingCart = ({
   cart,
+  cartIsEmpty,
+  cartTotal,
   clearCart,
   close,
   decreaseQuantity,
   increaseQuantity,
   removeProductFromCart,
 }: Props) => {
-  const { cartIsEmpty, cartTotal } = useCart();
   const isDesktop = useMediaQuery('(min-width:600px)');
 
   return (
