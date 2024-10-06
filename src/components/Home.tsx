@@ -67,7 +67,7 @@ function Home({ products }: Props) {
           <Typography variant='h3' sx={{ mb: 2.5 }}>
             {category.toUpperCase()}
           </Typography>
-          <Typography sx={{ fontSize: '1rem' }}>Discover more</Typography>
+          <Typography sx={{ fontSize: '1.25rem' }}>Discover more</Typography>
         </Stack>
       ))}
     </Stack>

@@ -124,14 +124,29 @@ const ShoppingCart = ({
           />
         </Stack>
         {!cartIsEmpty && (
-          <Button
-            variant='outlined'
-            color='inherit'
-            onClick={() => clearCart()}
-            sx={{ width: '100%', marginTop: '0.75rem' }}
-          >
-            Clear Cart
-          </Button>
+          <>
+            <Button
+              variant='contained'
+              href={`/info`}
+              sx={{
+                width: '100%',
+                marginTop: '0.75rem',
+                backgroundColor: '#373330',
+                '&:hover': {
+                  backgroundColor: 'grey',
+                },
+              }}
+            >
+              Go To Checkout
+            </Button>
+            <Button
+              color='inherit'
+              onClick={() => clearCart()}
+              sx={{ width: '100%', marginTop: '0.75rem' }}
+            >
+              Clear Cart
+            </Button>
+          </>
         )}
       </Stack>
     </>

@@ -30,21 +30,31 @@ const Navigation = ({ closeMenu, isOpenNavigationMenu }: Props) => {
       title: 'Women',
       link: "/category/women's clothing",
     },
-    contact: {
-      title: 'Contact',
-      link: '/',
+    info: {
+      title: 'Info',
+      link: '/info',
     },
   };
   return (
     <Drawer open={isOpenNavigationMenu} onClose={closeMenu}>
-      <Box sx={{ width: 250 }} role='presentation' onClick={closeMenu}>
+      <Box
+        sx={{
+          width: 250,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          height: '100vh',
+        }}
+        role='presentation'
+        onClick={closeMenu}
+      >
         <List>
           {(
             Object.keys(categoryItemMenuInfo) as Array<
               keyof typeof categoryItemMenuInfo
             >
           )
-            .filter((key) => key !== 'contact')
+            .filter((key) => key !== 'info')
             .map((key) => {
               const { title, link } = categoryItemMenuInfo[key];
               return (
@@ -57,15 +67,14 @@ const Navigation = ({ closeMenu, isOpenNavigationMenu }: Props) => {
             })}
         </List>
 
-        <Divider />
-
         <List>
-          <ListItem key='contact' disablePadding>
+          <Divider />
+          <ListItem key='info' disablePadding>
             <ListItemButton
               component={Link}
-              to={categoryItemMenuInfo.contact.link}
+              to={categoryItemMenuInfo.info.link}
             >
-              <ListItemText primary={categoryItemMenuInfo.contact.title} />
+              <ListItemText primary={categoryItemMenuInfo.info.title} />
             </ListItemButton>
           </ListItem>
         </List>

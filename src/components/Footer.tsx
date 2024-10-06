@@ -33,24 +33,28 @@ const Footer = () => {
       >
         <IconButton
           href={'https://github.com/seguramaria'}
+          target='_blank'
           aria-label='Go to git hub profile'
         >
           <GitHubIcon sx={{ fontSize: 20, color: '#373330' }} />
         </IconButton>
         <IconButton
           href={'https://www.linkedin.com/in/seguramaria/'}
+          target='_blank'
           aria-label='Go to linkedin profile'
         >
           <LinkedInIcon sx={{ fontSize: 20, color: '#373330' }} />
         </IconButton>
         <IconButton
           href={'https://x.com/MariaesSegura/'}
+          target='_blank'
           aria-label='Go to twitter profile'
         >
           <TwitterIcon sx={{ fontSize: 20, color: '#373330' }} />
         </IconButton>
         <IconButton
           href={'https://seguramaria.com/'}
+          target='_blank'
           aria-label='Go to my personal web'
         >
           <AccountBoxOutlinedIcon sx={{ fontSize: 20, color: '#373330' }} />
