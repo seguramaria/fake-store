@@ -4,16 +4,19 @@ import {
   Box,
   Button,
   Drawer,
+  IconButton,
   Stack,
   Toolbar,
   Typography,
 } from '@mui/material';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import ShoppingCart from './ShoppingCart';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import StoreOutlinedIcon from '@mui/icons-material/StoreOutlined';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { Product } from '../types';
 import { Link } from 'react-router-dom';
+import Navigation from './Navigation';
+import MenuIcon from '@mui/icons-material/Menu';
 
 type Props = {
   cart: Product[];
@@ -35,44 +38,48 @@ const Header = ({
   removeProductFromCart,
 }: Props) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isOpenNavigationMenu, setOpenNavigationMenu] = useState(false);
   const isDesktop = useMediaQuery('(min-width:600px)');
 
-  const handleClickOpenCart = () => {
-    setIsCartOpen(true);
-  };
-
   return (
-    <AppBar position='sticky' color='inherit'>
+    <AppBar position='sticky' color='inherit' sx={{ boxShadow: 'none' }}>
       <Toolbar sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
-        <Link
-          to={`/`}
-          style={{
-            color: 'black',
-            textDecoration: 'none',
+        <Stack
+          sx={{
+            flexDirection: 'row',
+            width: '100%',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
           }}
         >
-          <Stack
-            sx={{
-              flexDirection: 'row',
-              width: '100%',
-              alignItems: 'center',
-              justifyContent: 'flex-start',
+          <div>
+            <IconButton
+              onClick={() => setOpenNavigationMenu(true)}
+              aria-label='Open navigation menu'
+            >
+              <MenuIcon />
+            </IconButton>
+            <Navigation
+              closeMenu={() => setOpenNavigationMenu(false)}
+              isOpenNavigationMenu={isOpenNavigationMenu}
+            />
+          </div>
+          <Link
+            to={`/`}
+            style={{
+              color: 'black',
+              textDecoration: 'none',
             }}
           >
-            <StoreOutlinedIcon
-              className='material-icons-outlined'
-              color='inherit'
-              sx={{ marginRight: '0.5rem' }}
-            />
             <Typography
               component='div'
               variant={isDesktop ? 'h5' : 'body1'}
-              sx={{ textWrap: 'nowrap' }}
+              sx={{ textWrap: 'nowrap', marginLeft: '1rem' }}
             >
               Fake Store
-            </Typography>
-          </Stack>
-        </Link>
+            </Typography>{' '}
+          </Link>
+        </Stack>
 
         <Box
           sx={{
@@ -83,15 +90,25 @@ const Header = ({
           }}
         >
           <Button
-            variant='outlined'
             color='inherit'
-            startIcon={<ShoppingCartIcon />}
-            onClick={handleClickOpenCart}
+            startIcon={<FavoriteBorderIcon />}
+            onClick={() => console.log('Go to favorites')}
             sx={{
               '&:hover': {
-                color: 'white',
-                backgroundColor: '#373330',
-                borderColor: '#373330',
+                backgroundColor: 'white',
+                borderColor: 'none',
+              },
+            }}
+          />
+
+          <Button
+            color='inherit'
+            startIcon={<ShoppingBagOutlinedIcon />}
+            onClick={() => setIsCartOpen(true)}
+            sx={{
+              '&:hover': {
+                backgroundColor: 'white',
+                borderColor: 'none',
               },
             }}
           >
