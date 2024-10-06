@@ -33,7 +33,7 @@ const ProductCard = ({
     <Card
       sx={{
         width: 270,
-        height: 336,
+        height: 348,
         padding: '0.5rem',
         boxShadow: 'none',
         '&:hover': {
@@ -45,7 +45,11 @@ const ProductCard = ({
         to={`/product/${product.id}`}
         style={{ textDecoration: 'none', color: 'black' }}
       >
-        <CardActionArea>
+        <CardActionArea
+          sx={{
+            padding: '0.5rem',
+          }}
+        >
           <CardMedia
             component='img'
             image={image}

@@ -4,6 +4,7 @@ import { Stack, Typography, Skeleton, Button } from '@mui/material';
 import ProductCard from './ProductCard';
 import { Product } from '../types';
 import { Link } from 'react-router-dom';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 type Props = {
   products: Product[];
@@ -22,6 +23,7 @@ function CategoryPage({
   decreaseQuantity,
   getProductQuantity,
 }: Props) {
+  const isDesktop = useMediaQuery('(min-width:1500px)');
   const { category } = useParams<{ category: string }>();
 
   const categoryProducts = products.filter(
@@ -70,7 +72,7 @@ function CategoryPage({
       <Grid
         container
         alignItems='center'
-        justifyContent='flex-start'
+        justifyContent={isDesktop ? 'flex-start' : 'center'}
         p={5}
         spacing={2}
       >
