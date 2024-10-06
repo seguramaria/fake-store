@@ -7,6 +7,7 @@ import ProductDetail from './components/ProductDetail';
 import { useCart } from './hooks/useCart';
 import { useFecthData } from './hooks/useFecthData';
 import Category from './components/Category';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   const {
@@ -24,6 +25,7 @@ function App() {
   return (
     <Router>
       <CssBaseline />
+      <ScrollToTop />
       <Header
         cart={cart}
         cartIsEmpty={cartIsEmpty}

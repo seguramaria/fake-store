@@ -26,6 +26,15 @@ function CategoryPage({
   const categoryProducts = products.filter(
     (product) => product.category === category
   );
+  const categoryImage: {
+    "men's clothing": string;
+    jewelery: string;
+    "women's clothing": string;
+  } = {
+    "men's clothing": '/img/category-men.jpg',
+    jewelery: '/img/category-jewelery.jpg',
+    "women's clothing": '/img/category-women.jpg',
+  };
 
   return (
     <Stack
@@ -33,16 +42,32 @@ function CategoryPage({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        height: 'calc(100vh - 40px)',
       }}
     >
-      <Typography variant='h4' sx={{ mb: 3 }}>
-        {category}
-      </Typography>
+      <Stack
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100%',
+          height: 'calc(100vh - 500px)',
+          backgroundImage: `url(${
+            categoryImage[category as keyof typeof categoryImage]
+          })`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          color: 'white',
+          textAlign: 'center',
+        }}
+      >
+        <Typography variant='h3' sx={{ mb: 2.5 }}>
+          {category?.toUpperCase()}
+        </Typography>
+      </Stack>
       <Grid
         container
         alignItems='center'
-        justifyContent='center'
+        justifyContent='flex-start'
         p={5}
         spacing={2}
       >
@@ -50,16 +75,14 @@ function CategoryPage({
           categoryProducts.map((product: Product) =>
             isLoading ? (
               <Skeleton
-                key={product.id}
                 animation='pulse'
                 variant='rectangular'
-                width={'100%'}
-                height={'100%'}
+                width={270}
+                height={336}
                 sx={{ margin: '1.5rem' }}
               />
             ) : (
               <ProductCard
-                key={product.id}
                 addToCart={addToCart}
                 product={product}
                 quantity={getProductQuantity(product.id)}

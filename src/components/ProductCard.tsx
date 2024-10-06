@@ -78,7 +78,14 @@ const ProductCard = ({
       </Link>
       <CardActions sx={{ height: '3.5rem' }}>
         {quantity > 0 ? (
-          <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '100%',
+            }}
+          >
             <IconButton
               onClick={() => increaseQuantity(product.id)}
               aria-label='increase quantity'
@@ -100,7 +107,7 @@ const ProductCard = ({
             color='success'
             aria-label='add product'
             onClick={() => addToCart(product)}
-            sx={{ width: '100%' }}
+            sx={{ width: '100%', color: '#a4a277' }}
           >
             Add to cart
           </Button>
