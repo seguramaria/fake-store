@@ -9,6 +9,7 @@ import { useFecthData } from './hooks/useFecthData';
 import Category from './components/Category';
 import ScrollToTop from './components/ScrollToTop';
 import InfoPage from './components/InfoPage';
+import NotFoundPage from './components/NotFoundPage';
 
 function App() {
   const {
@@ -75,6 +76,7 @@ function App() {
           }
         />
         <Route path='/info' element={<InfoPage />} />
+        <Route path='*' element={<NotFoundPage />} />
       </Routes>
       <Footer />
     </Router>

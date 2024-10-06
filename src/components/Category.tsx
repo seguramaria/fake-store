@@ -1,8 +1,9 @@
 import { useParams } from 'react-router-dom';
 import Grid from '@mui/material/Grid2';
-import { Stack, Typography, Skeleton } from '@mui/material';
+import { Stack, Typography, Skeleton, Button } from '@mui/material';
 import ProductCard from './ProductCard';
 import { Product } from '../types';
+import { Link } from 'react-router-dom';
 
 type Props = {
   products: Product[];
@@ -44,26 +45,28 @@ function CategoryPage({
         justifyContent: 'center',
       }}
     >
-      <Stack
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '100%',
-          height: 'calc(100vh - 500px)',
-          backgroundImage: `url(${
-            categoryImage[category as keyof typeof categoryImage]
-          })`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          color: 'white',
-          textAlign: 'center',
-        }}
-      >
-        <Typography variant='h3' sx={{ mb: 2.5 }}>
-          {category?.toUpperCase()}
-        </Typography>
-      </Stack>
+      {categoryProducts.length > 0 && !isLoading && (
+        <Stack
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '100%',
+            height: 'calc(100vh - 500px)',
+            backgroundImage: `url(${
+              categoryImage[category as keyof typeof categoryImage]
+            })`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            color: 'white',
+            textAlign: 'center',
+          }}
+        >
+          <Typography variant='h3' sx={{ mb: 2.5 }}>
+            {category?.toUpperCase()}
+          </Typography>
+        </Stack>
+      )}
       <Grid
         container
         alignItems='center'
@@ -92,7 +95,26 @@ function CategoryPage({
             )
           )
         ) : (
-          <Typography>No products.</Typography>
+          <Stack
+            sx={{
+              alignItems: 'flex-start',
+              justifyContent: 'center',
+              height: 'calc(100vh - 240px)',
+            }}
+          >
+            <Typography variant='h5' sx={{ mb: 3 }}>
+              No products found in this category.
+            </Typography>
+            <Button
+              variant='contained'
+              color='inherit'
+              component={Link}
+              to='/'
+              sx={{ width: '60%' }}
+            >
+              Go Back Home
+            </Button>
+          </Stack>
         )}
       </Grid>
     </Stack>
