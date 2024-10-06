@@ -17,9 +17,9 @@ function Home({ products }: Props) {
     jewelery: string;
     "women's clothing": string;
   } = {
-    "men's clothing": './public/img/men.jpg',
-    jewelery: './public/img/jewelery.jpg',
-    "women's clothing": './public/img/women.jpg',
+    "men's clothing": './img/men.jpg',
+    jewelery: './img/jewelery.jpg',
+    "women's clothing": './img/women.jpg',
   };
 
   const categoriesWithImages = products.reduce(
