@@ -6,6 +6,7 @@ import { CssBaseline } from '@mui/material';
 import ProductDetail from './components/ProductDetail';
 import { useCart } from './hooks/useCart';
 import { useFecthData } from './hooks/useFecthData';
+import Category from './components/Category';
 
 function App() {
   const {
@@ -55,6 +56,19 @@ function App() {
               getProductQuantity={getProductQuantity}
               increaseQuantity={increaseQuantity}
               decreaseQuantity={decreaseQuantity}
+            />
+          }
+        />
+        <Route
+          path='/category/:category'
+          element={
+            <Category
+              products={products}
+              isLoading={isLoading}
+              addToCart={addToCart}
+              increaseQuantity={increaseQuantity}
+              decreaseQuantity={decreaseQuantity}
+              getProductQuantity={getProductQuantity}
             />
           }
         />

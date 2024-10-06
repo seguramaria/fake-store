@@ -1,7 +1,8 @@
 import ProductCard from './ProductCard';
 import Grid from '@mui/material/Grid2';
-import { Box, Stack, Skeleton, CardMedia, Typography } from '@mui/material';
+import { Box, Stack, Skeleton, Typography, Button } from '@mui/material';
 import { Product } from '../types';
+import { Link } from 'react-router-dom'; // Importamos Link de react-router-dom
 
 type Props = {
   products: Product[];
@@ -23,10 +24,12 @@ function Home({
   const productsGroupedByCategory = products.reduce(
     (group: { [key: string]: Product[] }, product) => {
       const { category } = product;
-      if (!group[category]) {
-        group[category] = [];
+      if (category !== 'electronics') {
+        if (!group[category]) {
+          group[category] = [];
+        }
+        group[category].push(product);
       }
-      group[category].push(product);
       return group;
     },
     {}
@@ -44,9 +47,6 @@ function Home({
         backgroundPosition: 'center',
       }}
     >
-      {/* <Box sx={{ width: '14rem', mb: 2 }}>
-        <CardMedia component='img' src='./img/logo.svg' alt='logo' /> TODO: Add image
-      </Box> */}
       {Object.entries(productsGroupedByCategory).map(
         ([category, categoryProducts]) => (
           <Box key={category} sx={{ width: '100%', mb: 4 }}>
@@ -60,28 +60,39 @@ function Home({
               p={5}
               spacing={2}
             >
-              {categoryProducts.map((product: Product) =>
-                isLoading ? (
-                  <Skeleton
-                    key={product.id}
-                    animation='pulse'
-                    variant='rectangular'
-                    width={'100%'}
-                    height={'100%'}
-                    sx={{ margin: '1.5rem' }}
-                  />
-                ) : (
-                  <ProductCard
-                    key={product.id}
-                    addToCart={addToCart}
-                    product={product}
-                    quantity={getProductQuantity(product.id)}
-                    increaseQuantity={increaseQuantity}
-                    decreaseQuantity={decreaseQuantity}
-                  />
-                )
-              )}
+              {categoryProducts
+                .slice(0, 3)
+                .map((product: Product) =>
+                  isLoading ? (
+                    <Skeleton
+                      key={product.id}
+                      animation='pulse'
+                      variant='rectangular'
+                      width={'100%'}
+                      height={'100%'}
+                      sx={{ margin: '1.5rem' }}
+                    />
+                  ) : (
+                    <ProductCard
+                      key={product.id}
+                      addToCart={addToCart}
+                      product={product}
+                      quantity={getProductQuantity(product.id)}
+                      increaseQuantity={increaseQuantity}
+                      decreaseQuantity={decreaseQuantity}
+                    />
+                  )
+                )}
             </Grid>
+            <Box sx={{ textAlign: 'center', mt: 2 }}>
+              <Button
+                variant='outlined'
+                component={Link}
+                to={`/category/${category}`} // Enlace a la página de la categoría
+              >
+                See more
+              </Button>
+            </Box>
           </Box>
         )
       )}
