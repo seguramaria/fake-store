@@ -64,7 +64,7 @@ const ShoppingCartItem = ({
             {title}
           </Typography>
           <Typography sx={{ fontSize: '0.75rem', color: 'text.secondary' }}>
-            {price}$
+            ${price}
           </Typography>
         </CardContent>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>

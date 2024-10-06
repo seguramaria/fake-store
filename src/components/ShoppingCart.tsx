@@ -116,7 +116,7 @@ const ShoppingCart = ({
             }}
           >
             <Typography>Total:</Typography>
-            <Typography>{cartTotal}$</Typography>
+            <Typography>${cartTotal}</Typography>
           </Stack>
           <ShoppingBagOutlinedIcon
             fontSize='medium'

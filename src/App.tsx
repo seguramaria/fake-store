@@ -18,7 +18,6 @@ function App() {
     decreaseQuantity,
     getProductQuantity,
     increaseQuantity,
-
     removeProductFromCart,
   } = useCart();
   const { isLoading, products } = useFecthData();

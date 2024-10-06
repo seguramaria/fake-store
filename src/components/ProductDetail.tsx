@@ -88,14 +88,15 @@ const ProductDetail = ({
           >
             {description}
           </Typography>
-          <Typography variant='h6'>{price}$</Typography>
+          <Typography variant='h6'>${price}</Typography>
         </CardContent>
         <CardActions>
           {quantity > 0 ? (
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
               <IconButton
                 onClick={() => increaseQuantity(product.id)}
                 aria-label='increase quantity'
+                disabled={quantity >= 5}
               >
                 <AddCircleOutlineIcon />
               </IconButton>
@@ -113,6 +114,7 @@ const ProductDetail = ({
               color='success'
               aria-label='add product'
               onClick={() => addToCart(product)}
+              sx={{ width: '100%' }}
             >
               Add to cart
             </Button>

@@ -33,10 +33,7 @@ function CategoryPage({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        py: 5,
-        backgroundImage: `url('/img/bg.jpg')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        height: 'calc(100vh - 40px)',
       }}
     >
       <Typography variant='h4' sx={{ mb: 3 }}>

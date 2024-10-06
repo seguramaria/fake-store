@@ -57,12 +57,15 @@ export const useCart = () => {
   const decreaseQuantity = (id: number) => {
     const updatedCart = cart
       .map((item: Product) => {
-        if (item.id === id && item.quantity && item.quantity > 1) {
-          return { ...item, quantity: item.quantity - 1 };
+        if (item.id === id && item?.quantity) {
+          return {
+            ...item,
+            quantity: item?.quantity - 1,
+          };
         }
         return item;
       })
-      .filter((item: Product) => item.quantity && item.quantity > 0);
+      .filter((item: Product) => item?.quantity && item.quantity > 0);
 
     setCart(updatedCart);
   };
