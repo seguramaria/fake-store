@@ -1,31 +1,31 @@
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
-import ShoppingCartItem from './ShoppingCartItem';
+import ShoppingBagItem from './ShoppingBagItem';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import { Button, Stack, Typography } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Product } from '../types';
 
 type Props = {
-  cart: Product[];
-  cartIsEmpty: boolean;
-  cartTotal: number;
-  clearCart: () => void;
+  bag: Product[];
+  bagIsEmpty: boolean;
+  bagTotal: number;
+  clearBag: () => void;
   close: () => void;
   decreaseQuantity: (id: number) => void;
   increaseQuantity: (id: number) => void;
-  removeProductFromCart: (id: number) => void;
+  removeProductFromBag: (id: number) => void;
 };
 
-const ShoppingCart = ({
-  cart,
-  cartIsEmpty,
-  cartTotal,
-  clearCart,
+const ShoppingBag = ({
+  bag,
+  bagIsEmpty,
+  bagTotal,
+  clearBag,
   close,
   decreaseQuantity,
   increaseQuantity,
-  removeProductFromCart,
+  removeProductFromBag,
 }: Props) => {
   const isDesktop = useMediaQuery('(min-width:600px)');
 
@@ -55,7 +55,7 @@ const ShoppingCart = ({
             <CloseIcon />
           </IconButton>
         )}
-        {cartIsEmpty ? (
+        {bagIsEmpty ? (
           <Stack
             sx={{
               alignItems: 'flex-start',
@@ -63,7 +63,7 @@ const ShoppingCart = ({
             }}
           >
             <Typography variant='h6' paddingTop='0.75rem'>
-              YOUR CART IS EMPTY
+              YOUR BAG IS EMPTY
             </Typography>
           </Stack>
         ) : (
@@ -76,15 +76,15 @@ const ShoppingCart = ({
             }}
           >
             <Typography variant='h6' paddingBottom='1rem'>
-              Shopping Cart ({cart.length})
+              Shopping Bag ({bag.length})
             </Typography>
-            {cart.map((product) => (
-              <ShoppingCartItem
+            {bag.map((product) => (
+              <ShoppingBagItem
                 key={product.id}
                 decreaseQuantity={decreaseQuantity}
                 increaseQuantity={increaseQuantity}
                 product={product}
-                removeProductFromCart={removeProductFromCart}
+                removeProductFromBag={removeProductFromBag}
               />
             ))}
           </Stack>
@@ -116,14 +116,14 @@ const ShoppingCart = ({
             }}
           >
             <Typography>Total:</Typography>
-            <Typography>${cartTotal}</Typography>
+            <Typography>${bagTotal}</Typography>
           </Stack>
           <ShoppingBagOutlinedIcon
             fontSize='medium'
             sx={{ margin: '0 0 0.3rem 0.5rem' }}
           />
         </Stack>
-        {!cartIsEmpty && (
+        {!bagIsEmpty && (
           <>
             <Button
               variant='contained'
@@ -141,10 +141,10 @@ const ShoppingCart = ({
             </Button>
             <Button
               color='inherit'
-              onClick={() => clearCart()}
+              onClick={() => clearBag()}
               sx={{ width: '100%', marginTop: '0.75rem' }}
             >
-              Clear Cart
+              Clear Bag
             </Button>
           </>
         )}
@@ -153,4 +153,4 @@ const ShoppingCart = ({
   );
 };
 
-export default ShoppingCart;
+export default ShoppingBag;

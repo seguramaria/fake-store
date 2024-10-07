@@ -10,7 +10,7 @@ import {
   Typography,
 } from '@mui/material';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
-import ShoppingCart from './ShoppingCart';
+import ShoppingBag from './ShoppingBag';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { Product } from '../types';
@@ -19,25 +19,25 @@ import Navigation from './Navigation';
 import MenuIcon from '@mui/icons-material/Menu';
 
 type Props = {
-  cart: Product[];
-  cartIsEmpty: boolean;
-  cartTotal: number;
-  clearCart: () => void;
+  bag: Product[];
+  bagIsEmpty: boolean;
+  bagTotal: number;
+  clearBag: () => void;
   decreaseQuantity: (id: number) => void;
   increaseQuantity: (id: number) => void;
-  removeProductFromCart: (id: number) => void;
+  removeProductFromBag: (id: number) => void;
 };
 
 const Header = ({
-  cart,
-  cartIsEmpty,
-  cartTotal,
-  clearCart,
+  bag,
+  bagIsEmpty,
+  bagTotal,
+  clearBag,
   decreaseQuantity,
   increaseQuantity,
-  removeProductFromCart,
+  removeProductFromBag,
 }: Props) => {
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isBagOpen, setIsBagOpen] = useState(false);
   const [isOpenNavigationMenu, setOpenNavigationMenu] = useState(false);
   const isDesktop = useMediaQuery('(min-width:600px)');
 
@@ -104,7 +104,7 @@ const Header = ({
           <Button
             color='inherit'
             startIcon={<ShoppingBagOutlinedIcon />}
-            onClick={() => setIsCartOpen(true)}
+            onClick={() => setIsBagOpen(true)}
             sx={{
               '&:hover': {
                 backgroundColor: 'white',
@@ -112,22 +112,22 @@ const Header = ({
               },
             }}
           >
-            ({cart?.length})
+            ({bag?.length})
           </Button>
           <Drawer
             anchor='right'
-            open={isCartOpen}
-            onClose={() => setIsCartOpen(false)}
+            open={isBagOpen}
+            onClose={() => setIsBagOpen(false)}
           >
-            <ShoppingCart
-              cart={cart}
-              cartIsEmpty={cartIsEmpty}
-              cartTotal={cartTotal}
-              clearCart={clearCart}
-              close={() => setIsCartOpen(false)}
+            <ShoppingBag
+              bag={bag}
+              bagIsEmpty={bagIsEmpty}
+              bagTotal={bagTotal}
+              clearBag={clearBag}
+              close={() => setIsBagOpen(false)}
               decreaseQuantity={decreaseQuantity}
               increaseQuantity={increaseQuantity}
-              removeProductFromCart={removeProductFromCart}
+              removeProductFromBag={removeProductFromBag}
             />
           </Drawer>
         </Box>

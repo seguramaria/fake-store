@@ -1,13 +1,13 @@
 import { useEffect, useState, useMemo } from 'react';
 import { Product } from '../types';
 
-export const useCart = () => {
-  const initialCart = () => {
-    const localStorageCart = localStorage.getItem('cart');
-    return localStorageCart ? JSON.parse(localStorageCart) : [];
+export const useBag = () => {
+  const initialBag = () => {
+    const localStorageBag = localStorage.getItem('bag');
+    return localStorageBag ? JSON.parse(localStorageBag) : [];
   };
 
-  const [cart, setCart] = useState(initialCart);
+  const [bag, setBag] = useState(initialBag);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [products, setProducts] = useState<Product[]>([]);
 
@@ -32,30 +32,30 @@ export const useCart = () => {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart));
-  }, [cart]);
+    localStorage.setItem('bag', JSON.stringify(bag));
+  }, [bag]);
 
-  const addToCart = (product: Product) => {
-    setCart((prev: Product[]) => [...prev, { ...product, quantity: 1 }]);
+  const addToBag = (product: Product) => {
+    setBag((prev: Product[]) => [...prev, { ...product, quantity: 1 }]);
   };
 
-  const removeProductFromCart = (id: number) => {
-    const updatedCart = cart.filter((item: Product) => item.id !== id);
-    setCart(updatedCart);
+  const removeProductFromBag = (id: number) => {
+    const updatedBag = bag.filter((item: Product) => item.id !== id);
+    setBag(updatedBag);
   };
 
   const increaseQuantity = (id: number) => {
-    const updatedCart = cart.map((item: Product) => {
+    const updatedBag = bag.map((item: Product) => {
       if (item.id === id && item.quantity) {
         return { ...item, quantity: item.quantity + 1 };
       }
       return item;
     });
-    setCart(updatedCart);
+    setBag(updatedBag);
   };
 
   const decreaseQuantity = (id: number) => {
-    const updatedCart = cart
+    const updatedBag = bag
       .map((item: Product) => {
         if (item.id === id && item?.quantity) {
           return {
@@ -67,37 +67,39 @@ export const useCart = () => {
       })
       .filter((item: Product) => item?.quantity && item.quantity > 0);
 
-    setCart(updatedCart);
+    setBag(updatedBag);
   };
 
-  const clearCart = () => setCart([]);
+  const clearBag = () => setBag([]);
 
   const getProductQuantity = (productId: number) => {
-    const productInCart = cart.find((item: Product) => item.id === productId);
-    return productInCart ? productInCart.quantity : 0;
+    const productInBag = bag.find((item: Product) => item.id === productId);
+    return productInBag ? productInBag.quantity : 0;
   };
 
-  const cartIsEmpty = useMemo(() => cart.length === 0, [cart]);
-  const cartTotal = useMemo(
+  const bagIsEmpty = useMemo(() => bag.length === 0, [bag]);
+  const bagTotal = useMemo(
     () =>
-      cart.reduce(
-        (total: number, product: Product) =>
-          total + (product.quantity || 0) * product.price,
-        0
-      ),
-    [cart]
+      bag
+        .reduce(
+          (total: number, product: Product) =>
+            total + (product.quantity || 0) * product.price,
+          0
+        )
+        .toFixed(),
+    [bag]
   );
   return {
-    addToCart,
-    cart,
-    cartIsEmpty,
-    cartTotal,
-    clearCart,
+    addToBag,
+    bag,
+    bagIsEmpty,
+    bagTotal,
+    clearBag,
     decreaseQuantity,
     getProductQuantity,
     increaseQuantity,
     isLoading,
     products,
-    removeProductFromCart,
+    removeProductFromBag,
   };
 };

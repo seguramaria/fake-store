@@ -4,7 +4,7 @@ import Home from './components/Home';
 import Header from './components/Header';
 import { CssBaseline } from '@mui/material';
 import ProductDetail from './components/ProductDetail';
-import { useCart } from './hooks/useCart';
+import { useBag } from './hooks/useBag';
 import { useFecthData } from './hooks/useFecthData';
 import Category from './components/Category';
 import ScrollToTop from './components/ScrollToTop';
@@ -14,29 +14,29 @@ import FavoritesPage from './components/FavoritesPage';
 
 function App() {
   const {
-    addToCart,
-    cart,
-    cartIsEmpty,
-    cartTotal,
-    clearCart,
+    addToBag,
+    bag,
+    bagIsEmpty,
+    bagTotal,
+    clearBag,
     decreaseQuantity,
     getProductQuantity,
     increaseQuantity,
-    removeProductFromCart,
-  } = useCart();
+    removeProductFromBag,
+  } = useBag();
   const { isLoading, products } = useFecthData();
   return (
     <Router>
       <CssBaseline />
       <ScrollToTop />
       <Header
-        cart={cart}
-        cartIsEmpty={cartIsEmpty}
-        cartTotal={cartTotal}
-        clearCart={clearCart}
+        bag={bag}
+        bagIsEmpty={bagIsEmpty}
+        bagTotal={bagTotal}
+        clearBag={clearBag}
         decreaseQuantity={decreaseQuantity}
         increaseQuantity={increaseQuantity}
-        removeProductFromCart={removeProductFromCart}
+        removeProductFromBag={removeProductFromBag}
       />
       <Routes>
         <Route
@@ -45,7 +45,7 @@ function App() {
             <Home
               products={products}
               isLoading={isLoading}
-              addToCart={addToCart}
+              addToBag={addToBag}
               increaseQuantity={increaseQuantity}
               decreaseQuantity={decreaseQuantity}
               getProductQuantity={getProductQuantity}
@@ -56,7 +56,7 @@ function App() {
           path='/product/:id'
           element={
             <ProductDetail
-              addToCart={addToCart}
+              addToBag={addToBag}
               getProductQuantity={getProductQuantity}
               increaseQuantity={increaseQuantity}
               decreaseQuantity={decreaseQuantity}
@@ -68,7 +68,7 @@ function App() {
           element={
             <FavoritesPage
               isLoading={isLoading}
-              addToCart={addToCart}
+              addToBag={addToBag}
               increaseQuantity={increaseQuantity}
               decreaseQuantity={decreaseQuantity}
               getProductQuantity={getProductQuantity}
@@ -81,7 +81,7 @@ function App() {
             <Category
               products={products}
               isLoading={isLoading}
-              addToCart={addToCart}
+              addToBag={addToBag}
               increaseQuantity={increaseQuantity}
               decreaseQuantity={decreaseQuantity}
               getProductQuantity={getProductQuantity}

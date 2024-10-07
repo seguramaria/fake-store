@@ -16,7 +16,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 type Props = {
-  addToCart: (product: Product) => void;
+  addToBag: (product: Product) => void;
   decreaseQuantity: (id: number) => void;
   increaseQuantity: (id: number) => void;
   product: Product;
@@ -24,7 +24,7 @@ type Props = {
 };
 
 const ProductCard = ({
-  addToCart,
+  addToBag,
   increaseQuantity,
   product,
   quantity,
@@ -133,10 +133,10 @@ const ProductCard = ({
             size='small'
             color='success'
             aria-label='add product'
-            onClick={() => addToCart(product)}
+            onClick={() => addToBag(product)}
             sx={{ width: '100%', color: '#a4a277' }}
           >
-            Add to cart
+            Add to bag
           </Button>
         )}
       </CardActions>

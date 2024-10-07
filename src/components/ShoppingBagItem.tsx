@@ -13,14 +13,14 @@ type Props = {
   product: Product;
   decreaseQuantity: (id: number) => void;
   increaseQuantity: (id: number) => void;
-  removeProductFromCart: (id: number) => void;
+  removeProductFromBag: (id: number) => void;
 };
 
-const ShoppingCartItem = ({
+const ShoppingBagItem = ({
   decreaseQuantity,
   increaseQuantity,
   product,
-  removeProductFromCart,
+  removeProductFromBag,
 }: Props) => {
   const { image, title, price, quantity } = product;
 
@@ -36,7 +36,7 @@ const ShoppingCartItem = ({
     >
       <IconButton
         size='small'
-        onClick={() => removeProductFromCart(product.id)}
+        onClick={() => removeProductFromBag(product.id)}
         aria-label='remove product'
         sx={{ position: 'absolute', right: '2px' }}
       >
@@ -87,4 +87,4 @@ const ShoppingCartItem = ({
   );
 };
 
-export default ShoppingCartItem;
+export default ShoppingBagItem;

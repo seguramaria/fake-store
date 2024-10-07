@@ -8,7 +8,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 type Props = {
   isLoading: boolean;
-  addToCart: (product: Product) => void;
+  addToBag: (product: Product) => void;
   increaseQuantity: (id: number) => void;
   decreaseQuantity: (id: number) => void;
   getProductQuantity: (productId: number) => number;
@@ -16,7 +16,7 @@ type Props = {
 
 const FavoritesPage = ({
   isLoading,
-  addToCart,
+  addToBag,
   increaseQuantity,
   decreaseQuantity,
   getProductQuantity,
@@ -72,7 +72,7 @@ const FavoritesPage = ({
               />
             ) : (
               <ProductCard
-                addToCart={addToCart}
+                addToBag={addToBag}
                 product={product}
                 quantity={getProductQuantity(product.id)}
                 increaseQuantity={increaseQuantity}

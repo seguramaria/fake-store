@@ -9,7 +9,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 type Props = {
   products: Product[];
   isLoading: boolean;
-  addToCart: (product: Product) => void;
+  addToBag: (product: Product) => void;
   increaseQuantity: (id: number) => void;
   decreaseQuantity: (id: number) => void;
   getProductQuantity: (productId: number) => number;
@@ -18,7 +18,7 @@ type Props = {
 function CategoryPage({
   products,
   isLoading,
-  addToCart,
+  addToBag,
   increaseQuantity,
   decreaseQuantity,
   getProductQuantity,
@@ -89,7 +89,7 @@ function CategoryPage({
               />
             ) : (
               <ProductCard
-                addToCart={addToCart}
+                addToBag={addToBag}
                 product={product}
                 quantity={getProductQuantity(product.id)}
                 increaseQuantity={increaseQuantity}
