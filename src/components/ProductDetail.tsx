@@ -12,6 +12,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { Product } from '../types';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useFavorites } from '../hooks/useFavorites';
 
 type Props = {
   addToCart: (product: Product) => void;
@@ -29,6 +30,9 @@ const ProductDetail = ({
   const { id } = useParams();
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const { favorites, toggleFavorite } = useFavorites();
+  const isFavorite = favorites.some((fav) => fav.id === product?.id);
+
   const isDesktop = useMediaQuery('(min-width:600px)');
   const quantity = product ? getProductQuantity(product?.id) : 0;
 
@@ -126,6 +130,9 @@ const ProductDetail = ({
             <Typography variant='h6'>${price}</Typography>
           </CardContent>
           <CardActions sx={{ height: '56px' }}>
+            <button onClick={() => toggleFavorite(product)}>
+              {isFavorite ? '❤️' : '🤍'}
+            </button>
             {quantity > 0 ? (
               <Box
                 sx={{ display: 'flex', alignItems: 'center', width: '100%' }}

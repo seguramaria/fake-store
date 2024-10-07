@@ -11,6 +11,7 @@ import IconButton from '@mui/material/IconButton';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import { Product } from '../types';
+import { useFavorites } from '../hooks/useFavorites';
 
 type Props = {
   addToCart: (product: Product) => void;
@@ -28,6 +29,8 @@ const ProductCard = ({
   decreaseQuantity,
 }: Props) => {
   const { image, title, price } = product;
+  const { favorites, toggleFavorite } = useFavorites();
+  const isFavorite = favorites.some((fav) => fav.id === product.id);
 
   return (
     <Card
@@ -77,6 +80,9 @@ const ProductCard = ({
             <Typography variant='body2' sx={{ color: 'text.secondary' }}>
               ${price}
             </Typography>
+            <button onClick={() => toggleFavorite(product)}>
+              {isFavorite ? '❤️' : '🤍'}
+            </button>
           </CardContent>
         </CardActionArea>
       </Link>

@@ -10,6 +10,7 @@ import Category from './components/Category';
 import ScrollToTop from './components/ScrollToTop';
 import InfoPage from './components/InfoPage';
 import NotFoundPage from './components/NotFoundPage';
+import FavoritesPage from './components/FavoritesPage';
 
 function App() {
   const {
@@ -59,6 +60,18 @@ function App() {
               getProductQuantity={getProductQuantity}
               increaseQuantity={increaseQuantity}
               decreaseQuantity={decreaseQuantity}
+            />
+          }
+        />
+        <Route
+          path='/favorites'
+          element={
+            <FavoritesPage
+              isLoading={isLoading}
+              addToCart={addToCart}
+              increaseQuantity={increaseQuantity}
+              decreaseQuantity={decreaseQuantity}
+              getProductQuantity={getProductQuantity}
             />
           }
         />

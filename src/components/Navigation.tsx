@@ -16,7 +16,7 @@ const Navigation = ({ closeMenu, isOpenNavigationMenu }: Props) => {
   const categoryItemMenuInfo = {
     favorite: {
       title: 'Favorites',
-      link: '/',
+      link: '/favorites',
     },
     men: {
       title: 'Men',
