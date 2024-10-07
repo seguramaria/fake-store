@@ -24,7 +24,8 @@ function App() {
     increaseQuantity,
     removeProductFromBag,
   } = useBag();
-  const { isLoading, products } = useFetchData();
+  const { products, isLoading } = useFetchData();
+
   return (
     <Router>
       <CssBaseline />
@@ -39,19 +40,7 @@ function App() {
         removeProductFromBag={removeProductFromBag}
       />
       <Routes>
-        <Route
-          path='/'
-          element={
-            <Home
-              products={products}
-              isLoading={isLoading}
-              addToBag={addToBag}
-              increaseQuantity={increaseQuantity}
-              decreaseQuantity={decreaseQuantity}
-              getProductQuantity={getProductQuantity}
-            />
-          }
-        />
+        <Route path='/' element={<Home products={products} />} />
         <Route
           path='/product/:id'
           element={

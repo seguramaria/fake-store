@@ -1,19 +1,22 @@
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { Stack } from '@mui/material';
-import IconButton from '@mui/material/IconButton';
+import { useParams } from 'react-router-dom';
+import {
+  Button,
+  Box,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Typography,
+  Stack,
+  IconButton,
+  Skeleton,
+} from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { Product } from '../../types';
-import { useParams } from 'react-router-dom';
-import { useFavorites } from '../../hooks/useFavorites';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { Product } from '../../types';
+import { useFavorites } from '../../hooks/useFavorites';
 import { useFetchData } from '../../hooks/useFetchData';
 
 type Props = {
@@ -36,22 +39,44 @@ const ProductDetail = ({
   const isFavorite = favorites.some((fav) => fav.id === productDetail?.id);
 
   if (isLoading) {
-    return <p>Loading</p>;
+    return (
+      <>
+        <Stack
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '100%',
+            height: 'calc(100vh - 480px)',
+          }}
+        />
+        <Stack
+          spacing={2}
+          sx={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '3rem',
+            maxWidth: '500px',
+            margin: '0 auto',
+          }}
+        >
+          <Skeleton variant='rectangular' width={300} height={200} />
+        </Stack>
+      </>
+    );
   }
 
   if (!productDetail) return null;
-  const quantity = productDetail ? getProductQuantity(productDetail?.id) : 0;
+
+  const quantity = getProductQuantity(productDetail.id);
   const { image, price, description, title, category } = productDetail;
 
-  const categoryImage: {
-    "men's clothing": string;
-    jewelery: string;
-    "women's clothing": string;
-  } = {
+  const categoryImage: Record<string, string> = {
     "men's clothing": '/img/category-men.jpg',
     jewelery: '/img/category-jewelery.jpg',
     "women's clothing": '/img/category-women.jpg',
   };
+
   return (
     <>
       <Stack
@@ -66,8 +91,6 @@ const ProductDetail = ({
           })`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          color: 'white',
-          textAlign: 'center',
         }}
       />
       <Stack

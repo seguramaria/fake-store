@@ -4,11 +4,6 @@ import { Link } from 'react-router-dom';
 
 type Props = {
   products: Product[];
-  isLoading: boolean;
-  addToBag: (product: Product) => void;
-  increaseQuantity: (id: number) => void;
-  decreaseQuantity: (id: number) => void;
-  getProductQuantity: (productId: number) => number;
 };
 
 function Home({ products }: Props) {

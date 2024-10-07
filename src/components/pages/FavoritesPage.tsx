@@ -33,26 +33,25 @@ const FavoritesPage = ({
         justifyContent: 'center',
       }}
     >
-      {favorites.length > 0 && !isLoading && (
-        <Stack
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '100%',
-            height: isDesktop ? 'calc(100vh - 500px)' : 'calc(100vh - 400px)',
-            backgroundImage: 'url(./img/favorites.jpg)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            color: 'white',
-            textAlign: 'center',
-          }}
-        >
-          <Typography variant='h3' sx={{ mb: 2.5 }}>
-            Favorites
-          </Typography>
-        </Stack>
-      )}
+      <Stack
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100%',
+          height: isDesktop ? 'calc(100vh - 500px)' : 'calc(100vh - 400px)',
+          backgroundImage: 'url(./img/favorites.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          color: 'white',
+          textAlign: 'center',
+        }}
+      >
+        <Typography variant='h3' sx={{ mb: 2.5 }}>
+          Favorites
+        </Typography>
+      </Stack>
+
       <Grid
         container
         alignItems='center'
@@ -60,26 +59,28 @@ const FavoritesPage = ({
         p={5}
         spacing={2}
       >
-        {favorites.length > 0 ? (
-          favorites.map((product: Product) =>
-            isLoading ? (
-              <Skeleton
-                animation='pulse'
-                variant='rectangular'
-                width={270}
-                height={336}
-                sx={{ margin: '1.5rem' }}
-              />
-            ) : (
-              <ProductCard
-                addToBag={addToBag}
-                product={product}
-                quantity={getProductQuantity(product.id)}
-                increaseQuantity={increaseQuantity}
-                decreaseQuantity={decreaseQuantity}
-              />
-            )
-          )
+        {isLoading ? (
+          Array.from({ length: favorites.length }).map((_, index) => (
+            <Skeleton
+              key={index}
+              animation='pulse'
+              variant='rectangular'
+              width={270}
+              height={336}
+              sx={{ margin: '1.5rem' }}
+            />
+          ))
+        ) : favorites.length > 0 ? (
+          favorites.map((product: Product) => (
+            <ProductCard
+              key={product.id}
+              addToBag={addToBag}
+              product={product}
+              quantity={getProductQuantity(product.id)}
+              increaseQuantity={increaseQuantity}
+              decreaseQuantity={decreaseQuantity}
+            />
+          ))
         ) : (
           <Stack
             sx={{

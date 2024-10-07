@@ -30,6 +30,7 @@ function CategoryPage({
   const categoryProducts = products.filter(
     (product) => product.category === category
   );
+
   const categoryImage: {
     "men's clothing": string;
     jewelery: string;
@@ -48,28 +49,27 @@ function CategoryPage({
         justifyContent: 'center',
       }}
     >
-      {categoryProducts.length > 0 && !isLoading && (
-        <Stack
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '100%',
-            height: isDesktop ? 'calc(100vh - 500px)' : 'calc(100vh - 400px)',
-            backgroundImage: `url(${
-              categoryImage[category as keyof typeof categoryImage]
-            })`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            color: 'white',
-            textAlign: 'center',
-          }}
-        >
-          <Typography variant='h3' sx={{ mb: 2.5 }}>
-            {category?.toUpperCase()}
-          </Typography>
-        </Stack>
-      )}
+      <Stack
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100%',
+          height: isDesktop ? 'calc(100vh - 500px)' : 'calc(100vh - 400px)',
+          backgroundImage: category
+            ? `url(${categoryImage[category as keyof typeof categoryImage]})`
+            : '',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          color: 'white',
+          textAlign: 'center',
+        }}
+      >
+        <Typography variant='h3' sx={{ mb: 2.5 }}>
+          {category?.toUpperCase()}
+        </Typography>
+      </Stack>
+
       <Grid
         container
         alignItems='center'
@@ -77,26 +77,28 @@ function CategoryPage({
         p={5}
         spacing={2}
       >
-        {categoryProducts.length > 0 ? (
-          categoryProducts.map((product: Product) =>
-            isLoading ? (
-              <Skeleton
-                animation='pulse'
-                variant='rectangular'
-                width={270}
-                height={336}
-                sx={{ margin: '1.5rem' }}
-              />
-            ) : (
-              <ProductCard
-                addToBag={addToBag}
-                product={product}
-                quantity={getProductQuantity(product.id)}
-                increaseQuantity={increaseQuantity}
-                decreaseQuantity={decreaseQuantity}
-              />
-            )
-          )
+        {isLoading ? (
+          Array.from({ length: 5 }).map((_, index) => (
+            <Skeleton
+              key={index}
+              animation='pulse'
+              variant='rectangular'
+              width={270}
+              height={336}
+              sx={{ margin: '1.5rem' }}
+            />
+          ))
+        ) : categoryProducts.length > 0 ? (
+          categoryProducts.map((product: Product) => (
+            <ProductCard
+              key={product.id}
+              addToBag={addToBag}
+              product={product}
+              quantity={getProductQuantity(product.id)}
+              increaseQuantity={increaseQuantity}
+              decreaseQuantity={decreaseQuantity}
+            />
+          ))
         ) : (
           <Stack
             sx={{

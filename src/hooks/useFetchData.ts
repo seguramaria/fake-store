@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Product } from '../types';
 
 export const useFetchData = (productId?: string) => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [products, setProducts] = useState<Product[]>([]);
   const [productDetail, setProductDetail] = useState<Product | null>(null);
 
