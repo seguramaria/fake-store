@@ -23,7 +23,8 @@ function CategoryPage({
   decreaseQuantity,
   getProductQuantity,
 }: Props) {
-  const isDesktop = useMediaQuery('(min-width:1500px)');
+  const isDesktop = useMediaQuery('(min-width:600px)');
+  const isDesktopXL = useMediaQuery('(min-width:1500px)');
   const { category } = useParams<{ category: string }>();
 
   const categoryProducts = products.filter(
@@ -54,7 +55,7 @@ function CategoryPage({
             alignItems: 'center',
             justifyContent: 'center',
             width: '100%',
-            height: 'calc(100vh - 500px)',
+            height: isDesktop ? 'calc(100vh - 500px)' : 'calc(100vh - 400px)',
             backgroundImage: `url(${
               categoryImage[category as keyof typeof categoryImage]
             })`,
@@ -72,7 +73,7 @@ function CategoryPage({
       <Grid
         container
         alignItems='center'
-        justifyContent={isDesktop ? 'flex-start' : 'center'}
+        justifyContent={isDesktopXL ? 'flex-start' : 'center'}
         p={5}
         spacing={2}
       >

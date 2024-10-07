@@ -59,69 +59,107 @@ const ProductDetail = ({
     return <div>Product not found.</div>;
   }
 
-  const { image, price, description, title } = product;
+  const { image, price, description, title, category } = product;
+
+  const categoryImage: {
+    "men's clothing": string;
+    jewelery: string;
+    "women's clothing": string;
+  } = {
+    "men's clothing": '/img/category-men.jpg',
+    jewelery: '/img/category-jewelery.jpg',
+    "women's clothing": '/img/category-women.jpg',
+  };
   return (
-    <Stack
-      sx={{
-        maxWidth: 600,
-        display: 'flex',
-        flexDirection: isDesktop ? 'row' : 'column',
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-        paddingTop: '1.5rem',
-      }}
-    >
-      <CardMedia
-        component='img'
-        height='350'
-        image={image}
-        alt={`${title} image`}
+    <>
+      <Stack
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100%',
+          height: 'calc(100vh - 480px)',
+          backgroundImage: `url(${
+            categoryImage[category as keyof typeof categoryImage]
+          })`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          color: 'white',
+          textAlign: 'center',
+        }}
       />
-      <Stack>
-        <CardContent>
-          <Typography gutterBottom variant='h5' component='div'>
-            {title}
-          </Typography>
-          <Typography
-            variant='body2'
-            sx={{ color: 'text.secondary', textAlign: 'justify' }}
-          >
-            {description}
-          </Typography>
-          <Typography variant='h6'>${price}</Typography>
-        </CardContent>
-        <CardActions>
-          {quantity > 0 ? (
-            <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-              <IconButton
-                onClick={() => increaseQuantity(product.id)}
-                aria-label='increase quantity'
-                disabled={quantity >= 5}
-              >
-                <AddCircleOutlineIcon />
-              </IconButton>
-              <Typography>{quantity}</Typography>
-              <IconButton
-                onClick={() => decreaseQuantity(product.id)}
-                aria-label='remove product'
-              >
-                <RemoveCircleOutlineIcon />
-              </IconButton>
-            </Box>
-          ) : (
-            <Button
-              size='small'
-              color='success'
-              aria-label='add product'
-              onClick={() => addToCart(product)}
-              sx={{ width: '100%' }}
+      <Stack
+        sx={{
+          display: 'flex',
+          flexDirection: isDesktop ? 'row' : 'column',
+          alignItems: 'flex-start',
+          justifyContent: 'center',
+          padding: isDesktop ? '4rem 4rem 8rem 4rem' : '3rem',
+        }}
+      >
+        <CardMedia
+          component='img'
+          image={image}
+          alt={`${title} image`}
+          sx={{
+            marginRight: '1rem',
+            height: 200,
+            width: isDesktop ? '286px' : '100%',
+            objectFit: 'contain',
+          }}
+        />
+        <Stack maxWidth='390px'>
+          <CardContent>
+            <Typography gutterBottom variant='h5' component='div'>
+              {title}
+            </Typography>
+            <Typography
+              variant='body2'
+              sx={{
+                color: 'text.secondary',
+                textAlign: 'justify',
+                mb: '0.75rem',
+              }}
             >
-              Add to cart
-            </Button>
-          )}
-        </CardActions>
+              {description}
+            </Typography>
+            <Typography variant='h6'>${price}</Typography>
+          </CardContent>
+          <CardActions sx={{ height: '56px' }}>
+            {quantity > 0 ? (
+              <Box
+                sx={{ display: 'flex', alignItems: 'center', width: '100%' }}
+              >
+                <IconButton
+                  onClick={() => increaseQuantity(product.id)}
+                  aria-label='increase quantity'
+                  disabled={quantity >= 5}
+                >
+                  <AddCircleOutlineIcon />
+                </IconButton>
+                <Typography>{quantity}</Typography>
+                <IconButton
+                  onClick={() => decreaseQuantity(product.id)}
+                  aria-label='remove product'
+                >
+                  <RemoveCircleOutlineIcon />
+                </IconButton>
+              </Box>
+            ) : (
+              <Button
+                size='small'
+                color='success'
+                aria-label='add product'
+                onClick={() => addToCart(product)}
+                sx={{ width: '100%', color: '#a4a277' }}
+              >
+                Add to cart
+              </Button>
+            )}
+          </CardActions>
+        </Stack>
       </Stack>
-    </Stack>
+    </>
   );
 };
 
