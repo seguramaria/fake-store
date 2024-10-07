@@ -10,8 +10,8 @@ import { Link } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
-import { Product } from '../types';
-import { useFavorites } from '../hooks/useFavorites';
+import { Product } from '../../types';
+import { useFavorites } from '../../hooks/useFavorites';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 

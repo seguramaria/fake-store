@@ -10,10 +10,10 @@ import {
   Typography,
 } from '@mui/material';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
-import ShoppingBag from './ShoppingBag';
+import ShoppingBag from '../shoppingBag/ShoppingBag';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { Product } from '../types';
+import { Product } from '../../types';
 import { Link } from 'react-router-dom';
 import Navigation from './Navigation';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -83,7 +83,6 @@ const Header = ({
 
         <Box
           sx={{
-            flexBasis: { xs: '100%', md: '70%' },
             display: 'flex',
             justifyContent: 'flex-end',
             alignItems: 'center',

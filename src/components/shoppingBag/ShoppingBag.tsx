@@ -4,7 +4,7 @@ import ShoppingBagItem from './ShoppingBagItem';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import { Button, Stack, Typography } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { Product } from '../types';
+import { Product } from '../../types';
 
 type Props = {
   bag: Product[];

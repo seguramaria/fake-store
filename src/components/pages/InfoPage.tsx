@@ -3,6 +3,7 @@ import { Stack, Typography, Button } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { Link } from 'react-router-dom';
 
 const InfoPage = () => {
   const isDesktop = useMediaQuery('(min-width:600px)');
@@ -64,16 +65,41 @@ const InfoPage = () => {
               This web application is not a real web; it's a React Project. You
               can check the repository:
             </Typography>
-            <Button
-              variant='outlined'
-              href='https://github.com/seguramaria/fake-store'
-              target='_blank'
-              aria-label='Go to GitHub repository'
-              color='inherit'
-              startIcon={<GitHubIcon sx={{ fontSize: 16, color: '#373330' }} />}
+            <Stack
+              flexDirection={isDesktop ? 'row' : 'column'}
+              justifyContent='space-between'
+              alignItems={isDesktop ? 'flex-start' : 'center'}
+              sx={{ width: '100%' }}
             >
-              Go to GitHub
-            </Button>
+              <Button
+                variant='outlined'
+                href='https://github.com/seguramaria/fake-store'
+                target='_blank'
+                aria-label='Go to GitHub repository'
+                color='inherit'
+                startIcon={
+                  isDesktop && (
+                    <GitHubIcon sx={{ fontSize: 16, color: '#373330' }} />
+                  )
+                }
+                sx={{
+                  width: '50%',
+                  marginRight: isDesktop ? '0.5rem' : 0,
+                  marginBottom: !isDesktop ? '0.5rem' : 0,
+                }}
+              >
+                Go to GitHub
+              </Button>
+              <Button
+                variant='outlined'
+                color='inherit'
+                component={Link}
+                to='/'
+                sx={{ width: '50%' }}
+              >
+                Go Back Home
+              </Button>
+            </Stack>
           </Stack>
         </Grid>
       </Grid>

@@ -9,10 +9,10 @@ import IconButton from '@mui/material/IconButton';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { Product } from '../types';
+import { Product } from '../../types';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useFavorites } from '../hooks/useFavorites';
+import { useFavorites } from '../../hooks/useFavorites';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 

@@ -1,16 +1,16 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Footer from './components/Footer';
-import Home from './components/Home';
-import Header from './components/Header';
+import Footer from './components/common/Footer';
+import Home from './components/pages/Home';
+import Header from './components/common/Header';
 import { CssBaseline } from '@mui/material';
-import ProductDetail from './components/ProductDetail';
+import ProductDetailPage from './components/pages/ProductDetailPage';
 import { useBag } from './hooks/useBag';
 import { useFecthData } from './hooks/useFecthData';
-import Category from './components/Category';
-import ScrollToTop from './components/ScrollToTop';
-import InfoPage from './components/InfoPage';
-import NotFoundPage from './components/NotFoundPage';
-import FavoritesPage from './components/FavoritesPage';
+import CategoryPage from './components/pages/CategoryPage';
+import ScrollToTop from './components/common/ScrollToTop';
+import InfoPage from './components/pages/InfoPage';
+import NotFoundPage from './components/pages/NotFoundPage';
+import FavoritesPage from './components/pages/FavoritesPage';
 
 function App() {
   const {
@@ -55,7 +55,7 @@ function App() {
         <Route
           path='/product/:id'
           element={
-            <ProductDetail
+            <ProductDetailPage
               addToBag={addToBag}
               getProductQuantity={getProductQuantity}
               increaseQuantity={increaseQuantity}
@@ -78,7 +78,7 @@ function App() {
         <Route
           path='/category/:category'
           element={
-            <Category
+            <CategoryPage
               products={products}
               isLoading={isLoading}
               addToBag={addToBag}

@@ -1,5 +1,5 @@
 import { Stack, Typography } from '@mui/material';
-import { Product } from '../types';
+import { Product } from '../../types';
 import { Link } from 'react-router-dom';
 
 type Props = {

@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Product } from '../types';
+import { Product } from '../../types';
 
 type Props = {
   product: Product;

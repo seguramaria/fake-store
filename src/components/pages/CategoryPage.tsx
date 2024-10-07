@@ -1,12 +1,13 @@
-import { useFavorites } from '../hooks/useFavorites';
+import { useParams } from 'react-router-dom';
 import Grid from '@mui/material/Grid2';
 import { Stack, Typography, Skeleton, Button } from '@mui/material';
-import ProductCard from './ProductCard';
-import { Product } from '../types';
+import ProductCard from '../product/ProductCard';
+import { Product } from '../../types';
 import { Link } from 'react-router-dom';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 type Props = {
+  products: Product[];
   isLoading: boolean;
   addToBag: (product: Product) => void;
   increaseQuantity: (id: number) => void;
@@ -14,16 +15,30 @@ type Props = {
   getProductQuantity: (productId: number) => number;
 };
 
-const FavoritesPage = ({
+function CategoryPage({
+  products,
   isLoading,
   addToBag,
   increaseQuantity,
   decreaseQuantity,
   getProductQuantity,
-}: Props) => {
-  const { favorites } = useFavorites();
+}: Props) {
   const isDesktop = useMediaQuery('(min-width:600px)');
   const isDesktopXL = useMediaQuery('(min-width:1500px)');
+  const { category } = useParams<{ category: string }>();
+
+  const categoryProducts = products.filter(
+    (product) => product.category === category
+  );
+  const categoryImage: {
+    "men's clothing": string;
+    jewelery: string;
+    "women's clothing": string;
+  } = {
+    "men's clothing": '/img/category-men.jpg',
+    jewelery: '/img/category-jewelery.jpg',
+    "women's clothing": '/img/category-women.jpg',
+  };
 
   return (
     <Stack
@@ -33,7 +48,7 @@ const FavoritesPage = ({
         justifyContent: 'center',
       }}
     >
-      {favorites.length > 0 && !isLoading && (
+      {categoryProducts.length > 0 && !isLoading && (
         <Stack
           sx={{
             display: 'flex',
@@ -41,7 +56,9 @@ const FavoritesPage = ({
             justifyContent: 'center',
             width: '100%',
             height: isDesktop ? 'calc(100vh - 500px)' : 'calc(100vh - 400px)',
-            backgroundImage: 'url(./img/favorites.jpg)',
+            backgroundImage: `url(${
+              categoryImage[category as keyof typeof categoryImage]
+            })`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             color: 'white',
@@ -49,7 +66,7 @@ const FavoritesPage = ({
           }}
         >
           <Typography variant='h3' sx={{ mb: 2.5 }}>
-            Favorites
+            {category?.toUpperCase()}
           </Typography>
         </Stack>
       )}
@@ -60,8 +77,8 @@ const FavoritesPage = ({
         p={5}
         spacing={2}
       >
-        {favorites.length > 0 ? (
-          favorites.map((product: Product) =>
+        {categoryProducts.length > 0 ? (
+          categoryProducts.map((product: Product) =>
             isLoading ? (
               <Skeleton
                 animation='pulse'
@@ -89,7 +106,7 @@ const FavoritesPage = ({
             }}
           >
             <Typography variant='h5' sx={{ mb: 3 }}>
-              You have no products added to favorites.
+              No products found in this category.
             </Typography>
             <Button
               variant='contained'
@@ -105,6 +122,6 @@ const FavoritesPage = ({
       </Grid>
     </Stack>
   );
-};
+}
 
-export default FavoritesPage;
+export default CategoryPage;
