@@ -91,7 +91,8 @@ const Header = ({
           <Button
             color='inherit'
             startIcon={<FavoriteBorderIcon />}
-            href='/favorites'
+            component={Link}
+            to='/favorites'
             sx={{
               '&:hover': {
                 backgroundColor: 'white',

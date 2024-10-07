@@ -1,10 +1,11 @@
+import { Button, Stack, Typography } from '@mui/material';
+import { Product } from '../../types';
+import { Link } from 'react-router-dom';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 import ShoppingBagItem from './ShoppingBagItem';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { Button, Stack, Typography } from '@mui/material';
-import { Product } from '../../types';
 
 type Props = {
   bag: Product[];
@@ -127,7 +128,8 @@ const ShoppingBag = ({
           <>
             <Button
               variant='contained'
-              href={`/info`}
+              component={Link}
+              to='/info'
               sx={{
                 width: '100%',
                 marginTop: '0.75rem',

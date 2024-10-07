@@ -6,7 +6,12 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import Typography from '@mui/material/Typography';
 import { IconButton, Stack } from '@mui/material';
 
-const Footer = () => {
+type Props = {
+  isLoading: boolean;
+};
+
+const Footer = ({ isLoading }: Props) => {
+  if (isLoading) return null;
   return (
     <Stack
       component='footer'

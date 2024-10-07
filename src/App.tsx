@@ -80,7 +80,7 @@ function App() {
         <Route path='/info' element={<InfoPage />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
-      <Footer />
+      <Footer isLoading={isLoading} />
     </Router>
   );
 }
