@@ -130,6 +130,7 @@ const ShoppingBag = ({
               variant='contained'
               component={Link}
               to='/info'
+              onClick={() => close()}
               sx={{
                 width: '100%',
                 marginTop: '0.75rem',
