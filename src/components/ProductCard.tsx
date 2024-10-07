@@ -12,6 +12,8 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import { Product } from '../types';
 import { useFavorites } from '../hooks/useFavorites';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 type Props = {
   addToCart: (product: Product) => void;
@@ -38,12 +40,30 @@ const ProductCard = ({
         width: 270,
         height: 348,
         padding: '0.5rem',
+        position: 'relative',
+        marginBottom: '2rem',
         boxShadow: 'none',
         '&:hover': {
           boxShadow: 2,
         },
       }}
     >
+      <Button
+        onClick={(e) => {
+          e.stopPropagation();
+          toggleFavorite(product);
+        }}
+        sx={{
+          position: 'absolute',
+          top: '0.5rem',
+          right: '0.5rem',
+          zIndex: 1,
+          color: '#d1d1d1',
+        }}
+      >
+        {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+      </Button>
+
       <Link
         to={`/product/${product.id}`}
         style={{ textDecoration: 'none', color: 'black' }}
@@ -80,9 +100,6 @@ const ProductCard = ({
             <Typography variant='body2' sx={{ color: 'text.secondary' }}>
               ${price}
             </Typography>
-            <button onClick={() => toggleFavorite(product)}>
-              {isFavorite ? '❤️' : '🤍'}
-            </button>
           </CardContent>
         </CardActionArea>
       </Link>

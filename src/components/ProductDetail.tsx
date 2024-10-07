@@ -13,6 +13,8 @@ import { Product } from '../types';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useFavorites } from '../hooks/useFavorites';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 type Props = {
   addToCart: (product: Product) => void;
@@ -96,23 +98,52 @@ const ProductDetail = ({
         sx={{
           display: 'flex',
           flexDirection: isDesktop ? 'row' : 'column',
-          alignItems: 'flex-start',
+          alignItems: isDesktop ? 'flex-start' : 'center',
           justifyContent: 'center',
           padding: isDesktop ? '4rem 4rem 8rem 4rem' : '3rem',
         }}
       >
+        {!isDesktop && (
+          <Button
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleFavorite(product);
+            }}
+            sx={{
+              color: '#d1d1d1',
+              marginLeft: 'auto',
+            }}
+          >
+            {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+          </Button>
+        )}
         <CardMedia
           component='img'
           image={image}
           alt={`${title} image`}
           sx={{
-            marginRight: '1rem',
+            marginRight: isDesktop ? '1rem' : 0,
+            marginTop: isDesktop ? '2.5rem' : 0,
             height: 200,
             width: isDesktop ? '286px' : '100%',
             objectFit: 'contain',
           }}
         />
         <Stack maxWidth='390px'>
+          {isDesktop && (
+            <Button
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleFavorite(product);
+              }}
+              sx={{
+                color: '#d1d1d1',
+                marginLeft: 'auto',
+              }}
+            >
+              {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+            </Button>
+          )}
           <CardContent>
             <Typography gutterBottom variant='h5' component='div'>
               {title}
@@ -130,9 +161,6 @@ const ProductDetail = ({
             <Typography variant='h6'>${price}</Typography>
           </CardContent>
           <CardActions sx={{ height: '56px' }}>
-            <button onClick={() => toggleFavorite(product)}>
-              {isFavorite ? '❤️' : '🤍'}
-            </button>
             {quantity > 0 ? (
               <Box
                 sx={{ display: 'flex', alignItems: 'center', width: '100%' }}

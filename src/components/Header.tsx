@@ -92,7 +92,7 @@ const Header = ({
           <Button
             color='inherit'
             startIcon={<FavoriteBorderIcon />}
-            onClick={() => console.log('Go to favorites')}
+            href='/favorites'
             sx={{
               '&:hover': {
                 backgroundColor: 'white',
