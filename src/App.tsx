@@ -5,7 +5,7 @@ import Header from './components/common/Header';
 import { CssBaseline } from '@mui/material';
 import ProductDetailPage from './components/pages/ProductDetailPage';
 import { useBag } from './hooks/useBag';
-import { useFecthData } from './hooks/useFecthData';
+import { useFetchData } from './hooks/useFetchData';
 import CategoryPage from './components/pages/CategoryPage';
 import ScrollToTop from './components/common/ScrollToTop';
 import InfoPage from './components/pages/InfoPage';
@@ -24,7 +24,7 @@ function App() {
     increaseQuantity,
     removeProductFromBag,
   } = useBag();
-  const { isLoading, products } = useFecthData();
+  const { isLoading, products } = useFetchData();
   return (
     <Router>
       <CssBaseline />

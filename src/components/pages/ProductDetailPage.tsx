@@ -10,11 +10,11 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Product } from '../../types';
-import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useFavorites } from '../../hooks/useFavorites';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { useFetchData } from '../../hooks/useFetchData';
 
 type Props = {
   addToBag: (product: Product) => void;
@@ -30,42 +30,18 @@ const ProductDetail = ({
   increaseQuantity,
 }: Props) => {
   const { id } = useParams();
-  const [product, setProduct] = useState<Product | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const { productDetail, isLoading } = useFetchData(id);
   const { favorites, toggleFavorite } = useFavorites();
-  const isFavorite = favorites.some((fav) => fav.id === product?.id);
-
   const isDesktop = useMediaQuery('(min-width:600px)');
-  const quantity = product ? getProductQuantity(product?.id) : 0;
+  const isFavorite = favorites.some((fav) => fav.id === productDetail?.id);
 
-  useEffect(() => {
-    const fetchProductDetail = async () => {
-      try {
-        const response = await fetch(`https://fakestoreapi.com/products/${id}`);
-        if (!response.ok) {
-          throw new Error('Error fetching product details');
-        }
-        const data = await response.json();
-        setProduct(data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProductDetail();
-  }, [id]);
-
-  if (loading) {
-    return <div>Loading...</div>;
+  if (isLoading) {
+    return <p>Loading</p>;
   }
 
-  if (!product) {
-    return <div>Product not found.</div>;
-  }
-
-  const { image, price, description, title, category } = product;
+  if (!productDetail) return null;
+  const quantity = productDetail ? getProductQuantity(productDetail?.id) : 0;
+  const { image, price, description, title, category } = productDetail;
 
   const categoryImage: {
     "men's clothing": string;
@@ -107,7 +83,7 @@ const ProductDetail = ({
           <Button
             onClick={(e) => {
               e.stopPropagation();
-              toggleFavorite(product);
+              toggleFavorite(productDetail);
             }}
             sx={{
               color: '#d1d1d1',
@@ -134,7 +110,7 @@ const ProductDetail = ({
             <Button
               onClick={(e) => {
                 e.stopPropagation();
-                toggleFavorite(product);
+                toggleFavorite(productDetail);
               }}
               sx={{
                 color: '#d1d1d1',
@@ -166,7 +142,7 @@ const ProductDetail = ({
                 sx={{ display: 'flex', alignItems: 'center', width: '100%' }}
               >
                 <IconButton
-                  onClick={() => increaseQuantity(product.id)}
+                  onClick={() => increaseQuantity(productDetail?.id)}
                   aria-label='increase quantity'
                   disabled={quantity >= 5}
                 >
@@ -174,7 +150,7 @@ const ProductDetail = ({
                 </IconButton>
                 <Typography>{quantity}</Typography>
                 <IconButton
-                  onClick={() => decreaseQuantity(product.id)}
+                  onClick={() => decreaseQuantity(productDetail?.id)}
                   aria-label='remove product'
                 >
                   <RemoveCircleOutlineIcon />
@@ -185,7 +161,7 @@ const ProductDetail = ({
                 size='small'
                 color='success'
                 aria-label='add product'
-                onClick={() => addToBag(product)}
+                onClick={() => addToBag(productDetail)}
                 sx={{ width: '100%', color: '#a4a277' }}
               >
                 Add to bag

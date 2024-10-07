@@ -18,7 +18,6 @@ export const FavoritesProvider = ({ children }: { children: ReactNode }) => {
 
   const [favorites, setFavorites] = useState<Product[]>(initialStoredFavorites);
   useEffect(() => {
-    console.log('Guardando favoritos en localStorage:', favorites);
     localStorage.setItem('favorites', JSON.stringify(favorites));
   }, [favorites]);
 
