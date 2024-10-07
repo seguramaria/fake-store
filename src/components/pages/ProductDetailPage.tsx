@@ -1,4 +1,7 @@
 import { useParams } from 'react-router-dom';
+import { useFavorites } from '../../hooks/useFavorites';
+import { useFetchData } from '../../hooks/useFetchData';
+import { Product } from '../../types';
 import {
   Button,
   Box,
@@ -11,25 +14,22 @@ import {
   Skeleton,
 } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { Product } from '../../types';
-import { useFavorites } from '../../hooks/useFavorites';
-import { useFetchData } from '../../hooks/useFetchData';
 
 type Props = {
   addToBag: (product: Product) => void;
   decreaseQuantity: (id: number) => void;
-  increaseQuantity: (id: number) => void;
   getProductQuantity: (productId: number) => number;
+  increaseQuantity: (id: number) => void;
 };
 
 const ProductDetail = ({
   addToBag,
-  getProductQuantity,
   decreaseQuantity,
+  getProductQuantity,
   increaseQuantity,
 }: Props) => {
   const { id } = useParams();

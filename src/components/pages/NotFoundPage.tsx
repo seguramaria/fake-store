@@ -1,5 +1,5 @@
-import { Stack, Typography, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { Stack, Typography, Button } from '@mui/material';
 
 const NotFoundPage = () => {
   return (

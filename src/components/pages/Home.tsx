@@ -1,6 +1,6 @@
-import { Stack, Typography } from '@mui/material';
-import { Product } from '../../types';
 import { Link } from 'react-router-dom';
+import { Product } from '../../types';
+import { Stack, Typography } from '@mui/material';
 
 type Props = {
   products: Product[];

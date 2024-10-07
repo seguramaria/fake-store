@@ -1,9 +1,9 @@
-import Grid from '@mui/material/Grid2';
+import { Link } from 'react-router-dom';
 import { Stack, Typography, Button } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import Grid from '@mui/material/Grid2';
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { Link } from 'react-router-dom';
 
 const InfoPage = () => {
   const isDesktop = useMediaQuery('(min-width:600px)');

@@ -1,10 +1,10 @@
+import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import { IconButton, Stack } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/Twitter';
-import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
+import Typography from '@mui/material/Typography';
+import { IconButton, Stack } from '@mui/material';
 
 const Footer = () => {
   return (

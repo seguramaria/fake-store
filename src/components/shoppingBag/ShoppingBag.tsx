@@ -2,8 +2,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 import ShoppingBagItem from './ShoppingBagItem';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
-import { Button, Stack, Typography } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { Button, Stack, Typography } from '@mui/material';
 import { Product } from '../../types';
 
 type Props = {

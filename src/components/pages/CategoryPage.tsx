@@ -1,27 +1,27 @@
 import { useParams } from 'react-router-dom';
-import Grid from '@mui/material/Grid2';
-import { Stack, Typography, Skeleton, Button } from '@mui/material';
-import ProductCard from '../product/ProductCard';
-import { Product } from '../../types';
 import { Link } from 'react-router-dom';
+import { Product } from '../../types';
+import { Stack, Typography, Skeleton, Button } from '@mui/material';
+import Grid from '@mui/material/Grid2';
+import ProductCard from '../product/ProductCard';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 type Props = {
-  products: Product[];
-  isLoading: boolean;
   addToBag: (product: Product) => void;
-  increaseQuantity: (id: number) => void;
   decreaseQuantity: (id: number) => void;
   getProductQuantity: (productId: number) => number;
+  increaseQuantity: (id: number) => void;
+  isLoading: boolean;
+  products: Product[];
 };
 
 function CategoryPage({
-  products,
-  isLoading,
   addToBag,
-  increaseQuantity,
   decreaseQuantity,
   getProductQuantity,
+  increaseQuantity,
+  isLoading,
+  products,
 }: Props) {
   const isDesktop = useMediaQuery('(min-width:600px)');
   const isDesktopXL = useMediaQuery('(min-width:1500px)');

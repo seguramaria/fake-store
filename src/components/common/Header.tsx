@@ -9,14 +9,14 @@ import {
   Toolbar,
   Typography,
 } from '@mui/material';
-import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
-import ShoppingBag from '../shoppingBag/ShoppingBag';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { Product } from '../../types';
 import { Link } from 'react-router-dom';
-import Navigation from './Navigation';
+import { Product } from '../../types';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import MenuIcon from '@mui/icons-material/Menu';
+import Navigation from './Navigation';
+import ShoppingBag from '../shoppingBag/ShoppingBag';
+import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 type Props = {
   bag: Product[];
